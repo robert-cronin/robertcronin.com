@@ -43,5 +43,5 @@ export default function Home(): JSX.Element {
   //   </Layout>
   // );
 
-  return <Redirect to="/blog" />;
+  return <Redirect to="/" />;
 }
