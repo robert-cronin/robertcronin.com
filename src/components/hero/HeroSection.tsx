@@ -15,7 +15,6 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import avatarUrl from "@/assets/avatar.png";
-import backgroundUrl from "@/assets/hero-background.svg";
 import { Box, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import SocialLinks from "@/components/hero/SocialLinks";
 import ResumeLink from "@/components/hero/ResumeLink";
@@ -38,7 +37,7 @@ const HeroSection = () => {
     <>
       <Box
         as={motion.div}
-        backgroundImage={`url(${backgroundUrl})`}
+        backgroundImage={'/hero-background.svg'}
         backgroundSize="cover"
         backgroundPosition="0% center"
         position="absolute"
