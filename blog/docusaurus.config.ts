@@ -58,11 +58,11 @@ const config: Config = {
       title: 'Robert Cronin',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         {
-          href: 'https://github.com/robert-cronin/robertcronin.com',
+          href: 'https://github.com/robert-cronin',
           label: 'GitHub',
           position: 'right',
         },
@@ -89,7 +89,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/robert-cronin/robertcronin.com',
             },
           ],
         },

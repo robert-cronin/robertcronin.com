@@ -38,10 +38,8 @@ kind: Ingress
 metadata:
   name: blog-robertcronin-com
   namespace: blog
-  annotations:
-    cert-manager.io/cluster-issuer: "lets-encrypt"
 spec:
-  ingressClassName: nginx
+  ingressClassName: istio
   rules:
   - host: blog.robertcronin.com
     http:
@@ -53,7 +51,7 @@ spec:
             name: blog-robertcronin-com
             port:
               number: 80
-  tls:
-  - hosts:
-    - blog.robertcronin.com
-    secretName: blog-robertcronin-com-tls
+  # tls:
+  # - hosts:
+  #   - blog.robertcronin.com
+  #   secretName: blog-robertcronin-com-tls

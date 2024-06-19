@@ -2,7 +2,7 @@
 
 TAG="robertcronin/robertcronin.com:latest"
 
-all: build push delete deploy
+all: build push deploy
 
 build:
 	docker build --target production -t $(TAG) .
@@ -12,6 +12,7 @@ push:
 
 delete:
 	kubectl delete -f k8s/deployment.yaml
+	# sudo microk8s ctr images list | grep robertcronin.com | awk '{print $1}' | xargs -I {} sudo microk8s ctr images rm {}
 
 deploy:
 	kubectl apply -f k8s/deployment.yaml

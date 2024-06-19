@@ -1,19 +1,22 @@
-FROM node:latest as build
+FROM node:22-alpine3.19 as build
 
 WORKDIR /app
 
-COPY package.json .
-COPY package-lock.json .
+COPY package.json ./
+COPY yarn.lock ./
 
-RUN npm install --no-cache
+RUN yarn install
 
 COPY . .
 
-RUN ["npm", "run", "build"]
+RUN yarn build
 
-FROM nginx:alpine as production
+# production
 
-COPY --from=build /app/build /usr/share/nginx/html
+FROM nginx:1.27.0-alpine
+
+COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
+CMD ["nginx", "-g", "daemon off;"]

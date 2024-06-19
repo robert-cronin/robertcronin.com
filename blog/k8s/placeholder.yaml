@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: placeholder-webpage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: placeholder-webpage
+  template:
+    metadata:
+      labels:
+        app: placeholder-webpage
+    spec:
+      containers:
+        - name: placeholder-webpage
+          image: a6b8/placeholder-webpage-docker
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: placeholder-webpage
+spec:
+  selector:
+    app: placeholder-webpage
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
