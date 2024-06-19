@@ -13,32 +13,20 @@
 # limitations under the License.
 
 apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
+kind: HTTPRoute
 metadata:
-  name: httpbin-gateway
+  name: robertcronincom
+  namespace: robertcronincom
 spec:
-  gatewayClassName: istio
-  listeners:
-  - name: http
-    hostname: "httpbin.example.com"
-    port: 80
-    protocol: HTTP
-    allowedRoutes:
-      namespaces:
-        from: Same
----
-# apiVersion: networking.istio.io/v1
-# kind: VirtualService
-# metadata:
-#   name: placeholder-webpage
-# spec:
-#   hosts:
-#     - robertcronin.com
-#   gateways:
-#     - placeholder-webpage-gateway
-#   http:
-#     - route:
-#         - destination:
-#             host: placeholder-webpage
-#             port:
-#               number: 80
+  parentRefs:
+    - name: gateway
+      namespace: robertcronincom
+  hostnames: ["robertcronin.com"]
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: robertcronincom
+          port: 80
