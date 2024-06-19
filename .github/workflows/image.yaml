@@ -1,4 +1,4 @@
-name: Create and publish Docker images
+name: Create and publish Docker image
 
 # Configures this workflow to run every time a change is pushed to a tag starting with `v`.
 on:
@@ -13,7 +13,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build-and-push-images:
+  build-and-push-image:
     runs-on: ubuntu-latest
 
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
