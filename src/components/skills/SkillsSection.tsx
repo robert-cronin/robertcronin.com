@@ -1,88 +1,163 @@
-import { FaNodeJs, FaReact, FaPython, FaDocker, FaGit } from "react-icons/fa";
-import {
-  SiTensorflow,
-  SiMongodb,
-  SiPostgresql,
-  SiRedis,
-  SiTypescript,
-  SiAmazonaws,
-  SiCypress,
-  SiFastapi,
-  SiFigma,
-  SiGithubactions,
-  SiJenkins,
-  SiJest,
-  SiKubernetes,
-  SiLinux,
-  SiMui,
-  SiNixos,
-  SiRedux,
-  SiStyledcomponents,
-  SiTerraform,
-  SiVisualstudiocode,
-} from "react-icons/si";
-import SkillCategory, {
-  SkillCategoryProps,
-} from "@/components/skills/SkillCategory";
+// Copyright 2024 Robert Cronin
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+import * as fa from "react-icons/fa";
+import * as fa6 from "react-icons/fa6";
+import * as si from "react-icons/si";
+import * as di from "react-icons/di";
+import * as tb from "react-icons/tb";
+import SkillCategory, { SkillCategoryProps } from "./SkillCategory";
+import styled from "styled-components";
 
 const frontendSkills = [
-  { icon: FaReact, name: "React" },
-  { icon: SiMui, name: "Material-UI" },
-  { icon: SiRedux, name: "Redux" },
-  { icon: SiFigma, name: "Figma" },
-  { icon: SiStyledcomponents, name: "Styled Components" },
-  { icon: SiTypescript, name: "TypeScript" },
+  { icon: fa.FaReact, name: "React" },
+  { icon: si.SiMui, name: "Material-UI" },
+  { icon: si.SiVite, name: "Vite" },
+  { icon: si.SiNextdotjs, name: "Next.js" },
+  { icon: si.SiRedux, name: "Redux" },
+  { icon: si.SiFigma, name: "Figma" },
+  { icon: si.SiStyledcomponents, name: "Styled Components" },
+  { icon: si.SiJavascript, name: "JavaScript" },
+  { icon: si.SiCss3, name: "CSS3" },
+  { icon: si.SiHtml5, name: "HTML5" },
+  { icon: si.SiTypescript, name: "TypeScript" },
+  { icon: tb.TbBrandReactNative, name: "React Native" },
 ];
 
 const backendSkills = [
-  { icon: FaNodeJs, name: "Node.js" },
-  { icon: FaPython, name: "Python" },
-  { icon: SiTensorflow, name: "TensorFlow" },
-  { icon: SiMongodb, name: "MongoDB" },
-  { icon: SiPostgresql, name: "PostgreSQL" },
-  { icon: SiRedis, name: "Redis" },
-  { icon: SiFastapi, name: "FastAPI" },
+  { icon: fa.FaNodeJs, name: "Node.js" },
+  { icon: fa.FaPython, name: "Python" },
+  { icon: fa6.FaGolang, name: "Go" },
+  { icon: si.SiKotlin, name: "Kotlin" },
+  { icon: di.DiJava, name: "Java" },
+  { icon: si.SiGin, name: "Gin" },
+  { icon: si.SiFastapi, name: "FastAPI" },
+  { icon: si.SiExpress, name: "Express.js" },
+];
+
+const databaseSkills = [
+  { icon: si.SiMongodb, name: "MongoDB" },
+  { icon: si.SiPostgresql, name: "PostgreSQL" },
+  { icon: si.SiMysql, name: "MySQL" },
+  { icon: si.SiRedis, name: "Redis" },
+  { icon: si.SiRabbitmq, name: "RabbitMQ" },
+  { icon: si.SiApachekafka, name: "Apache Kafka" },
+  // this is duplicated because there are too few
+  { icon: si.SiMongodb, name: "MongoDB" },
+  { icon: si.SiPostgresql, name: "PostgreSQL" },
+  { icon: si.SiMysql, name: "MySQL" },
+  { icon: si.SiRedis, name: "Redis" },
+  { icon: si.SiRabbitmq, name: "RabbitMQ" },
+  { icon: si.SiApachekafka, name: "Apache Kafka" },
 ];
 
 const cloudSkills = [
-  { icon: SiKubernetes, name: "Kubernetes" },
-  { icon: SiAmazonaws, name: "AWS" },
-  { icon: SiLinux, name: "Linux" },
-  { icon: SiTerraform, name: "Terraform" },
-  { icon: SiGithubactions, name: "GitHub Actions" },
-  { icon: SiJenkins, name: "Jenkins" },
+  { icon: si.SiKubernetes, name: "Kubernetes" },
+  { icon: si.SiAmazonaws, name: "AWS" },
+  { icon: si.SiLinux, name: "Linux" },
+  { icon: si.SiTerraform, name: "Terraform" },
+  { icon: si.SiGithubactions, name: "GitHub Actions" },
+  { icon: si.SiIstio, name: "Istio" },
+  { icon: si.SiOpenfaas, name: "OpenFaaS" },
+  { icon: si.SiAwsamplify, name: "AWS Amplify" },
+  { icon: si.SiAwslambda, name: "AWS Lambda" },
+  { icon: si.SiJenkins, name: "Jenkins" },
+  { icon: si.SiArgo, name: "ArgoCD" },
 ];
 
-const otherSkills = [
-  { icon: FaDocker, name: "Docker" },
-  { icon: FaGit, name: "Git" },
-  { icon: SiVisualstudiocode, name: "VS Code" },
-  { icon: SiJest, name: "Jest" },
-  { icon: SiCypress, name: "Cypress" },
-  { icon: SiNixos, name: "Nix" },
+const mlSkills = [
+  { icon: si.SiTensorflow, name: "TensorFlow" },
+  { icon: si.SiOpenai, name: "OpenAI API" },
+  { icon: si.SiJupyter, name: "Jupyter" },
+  { icon: si.SiElasticsearch, name: "Elasticsearch" },
+  { icon: si.SiPytorch, name: "Pytorch" },
+  { icon: si.SiNumpy, name: "NumPy" },
+  { icon: si.SiOpencv, name: "OpenCV" },
+  { icon: si.SiPandas, name: "Pandas" },
+  { icon: si.SiScipy, name: "SciPy" },
+  { icon: si.SiKeras, name: "Keras" },
 ];
 
-const TechSkills = () => {
+const toolsSkills = [
+  { icon: fa.FaDocker, name: "Docker" },
+  { icon: fa.FaGit, name: "Git" },
+  { icon: si.SiVisualstudiocode, name: "VS Code" },
+  { icon: si.SiJest, name: "Jest" },
+  { icon: si.SiCypress, name: "Cypress" },
+  { icon: si.SiNixos, name: "NixOS" },
+  { icon: si.SiGerrit, name: "Gerrit" },
+  { icon: si.SiGrafana, name: "Grafana" },
+  { icon: si.SiPrometheus, name: "Prometheus" },
+  { icon: si.SiGnubash, name: "GnuBash" },
+];
+
+const SkillsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  height: 100vh;
+`;
+
+const SkillsHeading = styled.h1`
+  font-size: 2rem;
+  font-weight: 600;
+  font-size: 2rem;
+  padding: 0 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+`;
+
+const SkillsText = styled.p`
+  text-align: center;
+  color: #333333;
+  max-width: 800px;
+  font-size: 1.2rem;
+  padding: 0.5rem 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
+const SkillsSection = () => {
   const categories: SkillCategoryProps[] = [
-    { name: "Frontend", skills: frontendSkills, direction: "left" },
-    { name: "Backend", skills: backendSkills, direction: "right" },
-    { name: "Cloud", skills: cloudSkills, direction: "left" },
-    { name: "Other", skills: otherSkills, direction: "right" },
+    { title: "Frontend", skills: frontendSkills, direction: "right" },
+    { title: "Backend", skills: backendSkills, direction: "right" },
+    { title: "Database", skills: databaseSkills, direction: "right" },
+    { title: "Cloud", skills: cloudSkills, direction: "right" },
+    { title: "MachineLearning", skills: mlSkills, direction: "right" },
+    { title: "Tools", skills: toolsSkills, direction: "right" },
   ];
 
   return (
-    // linear gradient diagonally from gray.400 to gray.200
-    <>
+    <SkillsContainer>
+      <SkillsHeading>Technologies</SkillsHeading>
+      <SkillsText>
+        Throughout my career and education, I've developed proficiency with a
+        variety of tools and technologies. Here are some of the technologies I
+        feel comfortable working with.
+      </SkillsText>
       {categories.map((category, index) => (
-        <SkillCategory
-          key={index}
-          name={category.name}
-          skills={category.skills}
-          direction={category.direction}
-        />
+        <SkillCategory key={index} {...category} />
       ))}
-    </>
+    </SkillsContainer>
   );
 };
 
-export default TechSkills;
+export default SkillsSection;

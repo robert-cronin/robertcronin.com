@@ -12,91 +12,165 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Box, Heading } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import { SkillIconProps } from "@/components/skills/SkillIcon";
-import SkillIcon from "./SkillIcon";
+import styled, { css, keyframes } from "styled-components";
+import { IconType } from "react-icons";
+
+const scroll = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+`;
+
+const ScrollContainer = styled.div`
+  width: 100%;
+  height: 8rem;
+  position: relative;
+  overflow-x: clip;
+
+  @media (max-width: 768px) {
+    height: 6rem;
+  }
+`;
+
+const ScrollContent = styled.div<{
+  direction: "left" | "right";
+  duration: number;
+}>`
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  height: 100%;
+
+  ${({ direction, duration }) => css`
+    animation: ${scroll} ${duration}s linear infinite;
+    animation-direction: ${direction === "left" ? "normal" : "reverse"};
+  `}
+
+  &:hover {
+    animation-play-state: paused;
+  }
+`;
+
+const SkillCard = styled.div`
+  position: relative;
+  flex: 0 0 auto;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    width: 4rem;
+    height: 4rem;
+  }
+`;
+
+const SkillIcon = styled.div`
+  font-size: 3rem;
+  color: #333333;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
+
+const SkillPopup = styled.div`
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  color: #333333;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  ${SkillCard}:hover & {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+  }
+`;
+
+const BlurOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  pointer-events: none;
+  z-index: 1;
+`;
+
+const LeftBlur = styled(BlurOverlay)`
+  left: 0;
+  background: linear-gradient(to right, #d9d9d9 0%, transparent 100%);
+`;
+
+const RightBlur = styled(BlurOverlay)`
+  right: 0;
+  background: linear-gradient(to left, #d9d9d9 0%, rgba(255, 255, 255, 0) 100%);
+`;
 
 type SkillCategoryProps = {
-  name: string;
-  skills: SkillIconProps[];
+  title: string;
+  skills: { icon: IconType; name: string }[];
   direction: "left" | "right";
 };
 
-const SkillCategory = ({ name, skills, direction }: SkillCategoryProps) => {
-  const duplicatedSlides = [...skills, ...skills, ...skills, ...skills];
+const SkillCategory: React.FC<SkillCategoryProps> = ({ skills, direction }) => {
+  const repeatedSkills = [
+    ...skills,
+    ...skills,
+    ...skills,
+    ...skills,
+    ...skills,
+    ...skills,
+  ];
 
   return (
-    <Box
-      marginBottom={8}
-      minWidth="200px"
-      display={"flex"}
-      flexDirection={"column"}
-      alignItems={"center"}
-      justifyContent={"center"}
-    >
-      <Heading as="h3" size="lg" mb={4} textAlign="center">
-        {name}
-      </Heading>
-
-      <Box
-        position="relative"
-        height="full"
-        overflow="hidden"
-        py={3}
-        mx="auto"
-        width="100%"
-        minWidth="600px"
-        color="white"
-      >
-        <Box
-          position="absolute"
-          inset={0}
-          zIndex={20}
-          _before={{
-            content: `""`,
-            position: "absolute",
-            left: 0,
-            top: 0,
-            width: "25%",
-            height: "100%",
-            bgGradient: "linear(to-r, gray.50, transparent)",
-            filter: "blur(3px)",
-          }}
-          _after={{
-            content: `""`,
-            position: "absolute",
-            right: 0,
-            top: 0,
-            width: "25%",
-            height: "100%",
-            bgGradient: "linear(to-l, gray.50, transparent)",
-            filter: "blur(3px)",
-          }}
-        />
-
-        <motion.div
-          style={{ display: "flex" }}
-          animate={{
-            x: direction === "left" ? ["0%", "-25%"] : ["-25%", "0%"],
-            transition: {
-              ease: "linear",
-              duration: 15,
-              repeat: Infinity,
-            },
-          }}
+    <>
+      <ScrollContainer>
+        <LeftBlur />
+        <ScrollContent
+          direction={direction}
+          duration={repeatedSkills.length * 2}
         >
-          {duplicatedSlides.map((slide, index) => (
-            <SkillIcon
-              key={index}
-              width={`${100 / skills.length}%`}
-              icon={slide.icon}
-              name={slide.name}
-            />
+          {repeatedSkills.map((skill, index) => (
+            <SkillCard key={index}>
+              <SkillIcon as={skill.icon} />
+              <SkillPopup>{skill.name}</SkillPopup>
+            </SkillCard>
           ))}
-        </motion.div>
-      </Box>
-    </Box>
+        </ScrollContent>
+        <RightBlur />
+      </ScrollContainer>
+    </>
   );
 };
 

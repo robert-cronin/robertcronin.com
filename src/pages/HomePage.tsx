@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import HeroSection from "@/components/hero/HeroSection";
-import TechSkills from "@/components/skills/SkillsSection";
+import SkillsSection from "@/components/skills/SkillsSection";
 import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
@@ -23,6 +23,7 @@ const ScrollContainer = styled(motion.div)`
   overflow-y: scroll;
   height: 100vh;
   scroll-behavior: smooth;
+  background-color: #d9d9d9;
 `;
 
 const ScrollSnap = styled(Box)`
@@ -34,8 +35,15 @@ const ScrollSnap = styled(Box)`
 const HomePage = () => {
   return (
     <ScrollContainer>
-      <ScrollSnap overflow="hidden" position="relative">
+      <ScrollSnap
+        overflow="hidden"
+        position="relative"
+        backgroundColor="gray.50"
+      >
         <HeroSection />
+      </ScrollSnap>
+      <ScrollSnap overflowY="scroll">
+        <SkillsSection />
       </ScrollSnap>
       <ScrollSnap
         overflowY="scroll"
