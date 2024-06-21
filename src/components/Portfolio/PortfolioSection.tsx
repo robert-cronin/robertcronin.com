@@ -116,7 +116,7 @@ const portfolioItems: PortfolioItem[] = [
   {
     title: "Personal Site",
     description:
-      "This website! Built with Next.js, TypeScript, and Chakra UI. Deployed through GitHub Actions to Homelab.",
+      "This website! Built with Vite.js, TypeScript, and Chakra UI. Deployed through GitHub Actions to Homelab.",
     url: "https://github.com/robert-cronin/robertcronin.com",
     imageUrl: RobertCroninCom,
     direction: "left" as const,
