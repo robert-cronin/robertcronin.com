@@ -1,11 +1,11 @@
 // Copyright 2024 Robert Cronin
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     https://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,9 +15,11 @@
 import { Link } from "@chakra-ui/react";
 
 const ResumeLink = () => {
+  const url =
+    "https://docs.google.com/viewer?url=https://raw.githubusercontent.com/robert-cronin/resume/main/resume.pdf";
   return (
     <Link
-      href="/resume.pdf"
+      href={url}
       position="absolute"
       top="20px"
       right="20px"
