@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import PortfolioSection from "@/components/Portfolio/PortfolioSection";
 import HeroSection from "@/components/hero/HeroSection";
 import SkillsSection from "@/components/skills/SkillsSection";
 import { Box } from "@chakra-ui/react";
@@ -47,11 +48,12 @@ const HomePage = () => {
       </ScrollSnap>
       <ScrollSnap
         overflowY="scroll"
-        bgGradient="linear(to-b, #D9D9D9, gray.50)"
-        paddingTop={10}
-        position="relative"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
       >
-        <TechSkills />
+        <PortfolioSection />
       </ScrollSnap>
     </ScrollContainer>
   );

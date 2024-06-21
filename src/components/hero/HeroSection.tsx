@@ -45,7 +45,7 @@ const HeroSection = () => {
         left="0"
         width="200%"
         height="100%"
-        zIndex="-1"
+        zIndex="1"
         animate={controls}
       />
       <VStack
