@@ -101,7 +101,7 @@ const portfolioItems: PortfolioItem[] = [
     title: "Homelab (k8s)",
     description:
       "Custom-built Kubernetes cluster cobbled together from and old MacMini an 2 Raspberry Pi's. It is the cluster used to host this website and all subdomains!",
-    url: "https://github.com/robert-cronin/jueju",
+    url: "https://github.com/robert-cronin/homelab",
     imageUrl: Homelab,
     direction: "left" as const,
   },

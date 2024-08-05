@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import PortfolioSection from "@/components/Portfolio/PortfolioSection";
+import PortfolioSection from "@/components/portfolio/PortfolioSection";
 import HeroSection from "@/components/hero/HeroSection";
 import SkillsSection from "@/components/skills/SkillsSection";
 import { Box } from "@chakra-ui/react";

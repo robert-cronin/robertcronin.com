@@ -17,7 +17,6 @@ import { useEffect } from "react";
 import avatarUrl from "@/assets/avatar.png";
 import { Box, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import SocialLinks from "@/components/hero/SocialLinks";
-import ResumeLink from "@/components/hero/ResumeLink";
 
 const HeroSection = () => {
   const controls = useAnimation();
@@ -58,7 +57,6 @@ const HeroSection = () => {
         color="#4d454c"
         textAlign="center"
       >
-        <ResumeLink />
         <Heading as="h1" size="2xl">
           Robert Cronin
         </Heading>
