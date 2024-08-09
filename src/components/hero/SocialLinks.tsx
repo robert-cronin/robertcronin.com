@@ -14,6 +14,7 @@
 
 import styled from "styled-components";
 import { FaGithub, FaLinkedin, FaStackOverflow } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const SocialContainer = styled.div`
   display: flex;
@@ -68,6 +69,13 @@ const SocialLinks = () => {
         rel="noopener noreferrer"
       >
         <FaStackOverflow />
+      </IconLink>
+      <IconLink
+        href="https://x.com/robcronin"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaXTwitter />
       </IconLink>
     </SocialContainer>
   );

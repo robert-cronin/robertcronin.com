@@ -15,6 +15,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import JueJuURL from "@/assets/jueju.png";
+import KubeMedic from "@/assets/kubemedic.png";
 import Homelab from "@/assets/homelab.png";
 import MindscriptGo from "@/assets/mindscript-go.png";
 import RobertCroninCom from "@/assets/robertcronincom.png";
@@ -22,8 +23,18 @@ import RobertCroninCom from "@/assets/robertcronincom.png";
 const PortfolioContainer = styled.div`
   height: 100vh;
   overflow-y: scroll;
-  padding: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const PortfolioContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   max-width: 1200px;
+  padding: 2rem;
+  height: fit-content;
 `;
 
 const PortfolioTitle = styled.h2`
@@ -98,12 +109,19 @@ const portfolioItems: PortfolioItem[] = [
     direction: "right" as const,
   },
   {
+    title: "KubeMedic",
+    description: "An intelligent Kubernetes diagnostics tool leveraging OpenAI's GPT-4o mini for advanced troubleshooting and best practices.",
+    url: "https://github.com/robert-cronin/kubemedic",
+    imageUrl: KubeMedic,
+    direction: "left" as const,
+  },
+  {
     title: "Homelab (k8s)",
     description:
       "Custom-built Kubernetes cluster cobbled together from and old MacMini an 2 Raspberry Pi's. It is the cluster used to host this website and all subdomains!",
     url: "https://github.com/robert-cronin/homelab",
     imageUrl: Homelab,
-    direction: "left" as const,
+    direction: "right" as const,
   },
   {
     title: "Mindscript Compiler (Go)",
@@ -111,7 +129,7 @@ const portfolioItems: PortfolioItem[] = [
       "A fun little hobby project to build a compiler for a simple declarative language programming I invented called 'Mindscript' based on the Minds in Iain M. Banks' Culture series.",
     url: "https://github.com/robert-cronin/mindscript-go",
     imageUrl: MindscriptGo,
-    direction: "right" as const,
+    direction: "left" as const,
   },
   {
     title: "Personal Site",
@@ -119,7 +137,7 @@ const portfolioItems: PortfolioItem[] = [
       "This website! Built with Vite.js, TypeScript, and Chakra UI. Deployed through GitHub Actions to Homelab.",
     url: "https://github.com/robert-cronin/robertcronin.com",
     imageUrl: RobertCroninCom,
-    direction: "left" as const,
+    direction: "right" as const,
   },
 ];
 
@@ -134,21 +152,23 @@ const progressiveShades = [
 const PortfolioSection: React.FC = () => {
   return (
     <PortfolioContainer>
-      <PortfolioTitle>Portfolio</PortfolioTitle>
-      {portfolioItems.map((item, index) => (
-        <PortfolioBanner
-          key={index}
-          direction={item.direction}
-          color={progressiveShades[index % progressiveShades.length]}
-          onClick={() => window.open(item.url, "_blank")}
-        >
-          <BannerImage src={item.imageUrl} alt={item.title} />
-          <BannerContent>
-            <BannerTitle>{item.title}</BannerTitle>
-            <BannerDescription>{item.description}</BannerDescription>
-          </BannerContent>
-        </PortfolioBanner>
-      ))}
+      <PortfolioContent>
+        <PortfolioTitle>Hobby Projects</PortfolioTitle>
+        {portfolioItems.map((item, index) => (
+          <PortfolioBanner
+            key={index}
+            direction={item.direction}
+            color={progressiveShades[index % progressiveShades.length]}
+            onClick={() => window.open(item.url, "_blank")}
+          >
+            <BannerImage src={item.imageUrl} alt={item.title} />
+            <BannerContent>
+              <BannerTitle>{item.title}</BannerTitle>
+              <BannerDescription>{item.description}</BannerDescription>
+            </BannerContent>
+          </PortfolioBanner>
+        ))}
+      </PortfolioContent>
     </PortfolioContainer>
   );
 };
