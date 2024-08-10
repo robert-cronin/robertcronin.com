@@ -17,13 +17,9 @@ import { BsMoonFill, BsSunFill } from "react-icons/bs";
 import styled from "styled-components";
 
 const Container = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  position: fixed;
+  top: 20px;
+  right: 20px;
   z-index: 1000;
 `;
 
@@ -34,11 +30,12 @@ const ColorModeToggle = () => {
     <Container>
       <Button
         onClick={toggleColorMode}
-        variant="link"
-        size="lg"
-        color={colorMode === "light" ? "gray.800" : "gray.50"}
+        variant="outline"
+        size="md"
         leftIcon={colorMode === "light" ? <BsMoonFill /> : <BsSunFill />}
-      />
+      >
+        {colorMode === "light" ? "Dark" : "Light"}
+      </Button>
     </Container>
   );
 };

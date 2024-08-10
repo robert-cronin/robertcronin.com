@@ -11,50 +11,23 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import React from "react";
 import avatarUrl from "@/assets/avatar.png";
-import { Box, Heading, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, Text, Image, VStack } from "@chakra-ui/react";
 import SocialLinks from "@/components/hero/SocialLinks";
+import ParticleFieldBackground from "@/components/hero/ParticleFieldBackground";
 
-const HeroSection = () => {
-  const controls = useAnimation();
-
-  useEffect(() => {
-    controls.start({
-      backgroundPositionX: ["0%", "100%"],
-      transition: {
-        duration: 20,
-        repeat: Infinity,
-        ease: "linear",
-      },
-    });
-  }, [controls]);
-
+const HeroSection: React.FC = () => {
   return (
-    <>
-      <Box
-        as={motion.div}
-        backgroundImage={'/hero-background.svg'}
-        backgroundSize="cover"
-        backgroundPosition="0% center"
-        position="absolute"
-        top="0"
-        left="0"
-        width="200%"
-        height="100%"
-        zIndex="1"
-        animate={controls}
-      />
+    <Box position="relative" height="100vh">
+      <ParticleFieldBackground />
       <VStack
         spacing={4}
         align="center"
         justify="center"
-        height="100vh"
+        height="100%"
         position="relative"
         zIndex="1"
-        color="#4d454c"
         textAlign="center"
       >
         <Heading as="h1" size="2xl">
@@ -69,7 +42,7 @@ const HeroSection = () => {
           width="auto"
         />
       </VStack>
-    </>
+    </Box>
   );
 };
 

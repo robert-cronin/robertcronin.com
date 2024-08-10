@@ -14,13 +14,14 @@
 
 import * as React from "react";
 import styled from "styled-components";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import JueJuURL from "@/assets/jueju.png";
 import KubeMedic from "@/assets/kubemedic.png";
 import Homelab from "@/assets/homelab.png";
 import MindscriptGo from "@/assets/mindscript-go.png";
 import RobertCroninCom from "@/assets/robertcronincom.png";
 
-const PortfolioContainer = styled.div`
+const PortfolioContainer = styled(Box)`
   height: 100vh;
   overflow-y: scroll;
   width: 100%;
@@ -43,23 +44,22 @@ const PortfolioTitle = styled.h2`
   margin-bottom: 2rem;
 `;
 
-const PortfolioBanner = styled.div<{
+const PortfolioBanner = styled(Box)<{
   direction: "left" | "right";
-  color: string;
 }>`
   display: flex;
-  flex-direction: ${(props) =>
+  flex-direction: ${(props: { direction: "left" | "right" }) =>
     props.direction === "left" ? "row" : "row-reverse"};
-  background-color: ${(props) => props.color};
   margin-bottom: 2rem;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
 
-  transition: transform 0.2s;
   &:hover {
     transform: scale(1.03);
     cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   }
 
   @media (max-width: 768px) {
@@ -110,7 +110,8 @@ const portfolioItems: PortfolioItem[] = [
   },
   {
     title: "KubeMedic",
-    description: "An intelligent Kubernetes diagnostics tool leveraging OpenAI's GPT-4o mini for advanced troubleshooting and best practices.",
+    description:
+      "An intelligent Kubernetes diagnostics tool leveraging OpenAI's GPT-4o mini for advanced troubleshooting and best practices.",
     url: "https://github.com/robert-cronin/kubemedic",
     imageUrl: KubeMedic,
     direction: "left" as const,
@@ -141,25 +142,29 @@ const portfolioItems: PortfolioItem[] = [
   },
 ];
 
-const progressiveShades = [
-  "#f0f0f0",
-  "#e0e0e0",
-  "#d0d0d0",
-  "#c0c0c0",
-  "#b0b0b0",
-];
-
 const PortfolioSection: React.FC = () => {
+  const bgColor = useColorModeValue("gray.50", "gray.800");
+  const textColor = useColorModeValue("gray.800", "gray.100");
+  const bannerBgColor = useColorModeValue("white", "gray.700");
+  const bannerShadowColor = useColorModeValue(
+    "rgba(0, 0, 0, 0.1)",
+    "rgba(255, 255, 255, 0.1)"
+  );
+
   return (
-    <PortfolioContainer>
+    <PortfolioContainer bg={bgColor} color={textColor}>
       <PortfolioContent>
         <PortfolioTitle>Hobby Projects</PortfolioTitle>
         {portfolioItems.map((item, index) => (
           <PortfolioBanner
             key={index}
             direction={item.direction}
-            color={progressiveShades[index % progressiveShades.length]}
+            bg={bannerBgColor}
+            boxShadow={`0 0 10px ${bannerShadowColor}`}
             onClick={() => window.open(item.url, "_blank")}
+            _hover={{
+              boxShadow: `0 0 15px ${bannerShadowColor}`,
+            }}
           >
             <BannerImage src={item.imageUrl} alt={item.title} />
             <BannerContent>

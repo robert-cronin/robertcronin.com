@@ -15,6 +15,15 @@
 import styled from "styled-components";
 import { FaGithub, FaLinkedin, FaStackOverflow } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { useColorModeValue } from "@chakra-ui/react";
+
+// Hover colors map
+const hoverColors = {
+  github: "#4078c0",
+  linkedin: "#0073b1",
+  stackoverflow: "#f48024",
+  xTwitter: "#e7e9ea",
+};
 
 const SocialContainer = styled.div`
   display: flex;
@@ -24,35 +33,27 @@ const SocialContainer = styled.div`
   padding: 20px;
 `;
 
-const IconLink = styled.a`
-  color: #000;
+const IconLink = styled.a<{ color: string; hoverColor: string }>`
   font-size: 2rem;
   transition: color 0.3s;
+  color: ${(props) => props.color};
 
   &:hover {
-    color: #0073b1;
-  }
-
-  &:nth-child(1):hover {
-    color: #4078c0;
-  }
-
-  &:nth-child(2):hover {
-    color: #0073b1;
-  }
-
-  &:nth-child(3):hover {
-    color: #f48024;
+    color: ${(props) => props.hoverColor};
   }
 `;
 
 const SocialLinks = () => {
+  const iconColor = useColorModeValue("gray.800", "white");
+
   return (
     <SocialContainer>
       <IconLink
         href="https://github.com/robert-cronin"
         target="_blank"
         rel="noopener noreferrer"
+        color={iconColor}
+        hoverColor={hoverColors.github}
       >
         <FaGithub />
       </IconLink>
@@ -60,6 +61,8 @@ const SocialLinks = () => {
         href="https://www.linkedin.com/in/robbiecronin/"
         target="_blank"
         rel="noopener noreferrer"
+        color={iconColor}
+        hoverColor={hoverColors.linkedin}
       >
         <FaLinkedin />
       </IconLink>
@@ -67,6 +70,8 @@ const SocialLinks = () => {
         href="https://stackoverflow.com/users/7644072/robbie-cronin"
         target="_blank"
         rel="noopener noreferrer"
+        color={iconColor}
+        hoverColor={hoverColors.stackoverflow}
       >
         <FaStackOverflow />
       </IconLink>
@@ -74,6 +79,8 @@ const SocialLinks = () => {
         href="https://x.com/robcronin"
         target="_blank"
         rel="noopener noreferrer"
+        color={iconColor}
+        hoverColor={hoverColors.xTwitter}
       >
         <FaXTwitter />
       </IconLink>

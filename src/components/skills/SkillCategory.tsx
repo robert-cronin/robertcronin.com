@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import styled, { css, keyframes } from "styled-components";
+import { useColorModeValue, Box } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 
 const scroll = keyframes`
@@ -38,6 +39,7 @@ const ScrollContent = styled.div<{
   display: flex;
   gap: 1rem;
   width: max-content;
+  align-items: center;
   height: 100%;
 
   ${({ direction, duration }) => css`
@@ -50,11 +52,9 @@ const ScrollContent = styled.div<{
   }
 `;
 
-const SkillCard = styled.div`
+const SkillCard = styled(Box)`
   position: relative;
   flex: 0 0 auto;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
   border-radius: 0.5rem;
   width: 5rem;
   height: 5rem;
@@ -74,9 +74,9 @@ const SkillCard = styled.div`
   }
 `;
 
-const SkillIcon = styled.div`
+const SkillIcon = styled.div<{ color: string }>`
   font-size: 3rem;
-  color: #333333;
+  color: ${(props) => props.color};
 
   @media (max-width: 768px) {
     font-size: 2rem;
@@ -152,25 +152,28 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({ skills, direction }) => {
     ...skills,
     ...skills,
   ];
+  const bgColor = useColorModeValue("white", "gray.700");
+  const iconColor = useColorModeValue("gray", "white");
+  const borderColor = useColorModeValue("gray.200", "gray.600");
 
   return (
-    <>
-      <ScrollContainer>
-        <LeftBlur />
-        <ScrollContent
-          direction={direction}
-          duration={repeatedSkills.length * 2}
-        >
-          {repeatedSkills.map((skill, index) => (
-            <SkillCard key={index}>
-              <SkillIcon as={skill.icon} />
-              <SkillPopup>{skill.name}</SkillPopup>
-            </SkillCard>
-          ))}
-        </ScrollContent>
-        <RightBlur />
-      </ScrollContainer>
-    </>
+    <ScrollContainer>
+      <LeftBlur />
+      <ScrollContent direction={direction} duration={repeatedSkills.length * 2}>
+        {repeatedSkills.map((skill, index) => (
+          <SkillCard
+            key={index}
+            bg={bgColor}
+            borderColor={borderColor}
+            borderWidth="1px"
+          >
+            <SkillIcon as={skill.icon} color={iconColor} />
+            <SkillPopup>{skill.name}</SkillPopup>
+          </SkillCard>
+        ))}
+      </ScrollContent>
+      <RightBlur />
+    </ScrollContainer>
   );
 };
 

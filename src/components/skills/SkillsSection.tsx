@@ -18,6 +18,7 @@ import * as si from "react-icons/si";
 import * as di from "react-icons/di";
 import * as tb from "react-icons/tb";
 import SkillCategory, { SkillCategoryProps } from "./SkillCategory";
+import { useColorModeValue, Box, Heading, Text } from "@chakra-ui/react";
 import styled from "styled-components";
 
 const frontendSkills = [
@@ -102,20 +103,19 @@ const toolsSkills = [
   { icon: si.SiGnubash, name: "GnuBash" },
 ];
 
-const SkillsContainer = styled.div`
+const SkillsContainer = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  height: 100vh;
+  min-height: 100vh;
 `;
 
-const SkillsHeading = styled.h1`
+const SkillsHeading = styled(Heading)`
   font-size: 2rem;
   font-weight: 600;
-  font-size: 2rem;
   padding: 0 1rem;
 
   @media (max-width: 768px) {
@@ -123,9 +123,8 @@ const SkillsHeading = styled.h1`
   }
 `;
 
-const SkillsText = styled.p`
+const SkillsText = styled(Text)`
   text-align: center;
-  color: #333333;
   max-width: 800px;
   font-size: 1.2rem;
   padding: 0.5rem 0.5rem;
@@ -136,6 +135,9 @@ const SkillsText = styled.p`
 `;
 
 const SkillsSection = () => {
+  const bgColor = useColorModeValue("gray.50", "gray.800");
+  const textColor = useColorModeValue("gray.800", "gray.100");
+
   const categories: SkillCategoryProps[] = [
     { title: "Frontend", skills: frontendSkills, direction: "right" },
     { title: "Backend", skills: backendSkills, direction: "right" },
@@ -146,7 +148,7 @@ const SkillsSection = () => {
   ];
 
   return (
-    <SkillsContainer>
+    <SkillsContainer bg={bgColor} color={textColor}>
       <SkillsHeading>Technologies</SkillsHeading>
       <SkillsText>
         Throughout my career and education, I've developed proficiency with a
